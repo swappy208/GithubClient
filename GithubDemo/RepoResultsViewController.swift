@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  GithubDemo
 //
-//  Created by Swapnil Tamrakar on 2/14/17.
+//  Created by Nhan Nguyen on 5/12/15.
 //  Copyright (c) 2015 codepath. All rights reserved.
 //
 
@@ -10,13 +10,19 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SettingsPresentingViewControllerDelegate{
+class RepoResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate ,SettingsPresentingViewControllerDelegate{
+    internal func didCancelSettings() {
+        }
+
+
 
     @IBOutlet weak var tableView: UITableView!
     var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
 
     var repos: [GithubRepo]!
+    var minStars: Int = 0
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,7 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         // Initialize the UISearchBar
         searchBar = UISearchBar()
         searchBar.delegate = self
+        searchBar.tintColor = .white
 
         // Add SearchBar to the NavigationBar
         searchBar.sizeToFit()
@@ -44,19 +51,34 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
 
         // Perform request to GitHub API to get the list of repositories
         GithubRepo.fetchRepos(searchSettings, successCallback: { (newRepos) -> Void in
-
+            self.repos = []
+            
             // Print the returned repositories to the output window
             for repo in newRepos {
-                print(repo)
+                //print(repo)
+                if(repo.stars! > self.minStars){
+                    self.repos.append(repo)
+                }
             }
-            self.repos = newRepos
+            
             self.tableView.reloadData()
             MBProgressHUD.hide(for: self.view, animated: true)
-            }, error: { (error) -> Void in
-                print(error)
+        }, error: { (error) -> Void in
+            print(error)
         })
+}
+    func didSaveSettings(settings: Int) {
+        self.minStars = settings
+        self.doSearch()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! SearchSettingsViewController
+        vc.minStars =  self.minStars // ... Search Settings ...
+        vc.delegate = self
+    }
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if repos == nil{
             return 0
@@ -76,25 +98,11 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
-    func didSaveSettings(settings: GithubRepoSearchSettings) {
-        self.searchSettings = settings
-        doSearch()
+    
     }
     
-    func didCancelSettings() {
-    }
+
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let navController = segue.destination as! UINavigationController
-        let vc = navController.topViewController as! SearchSettingsViewController
-        vc.settings = self.searchSettings // ... Search Settings ...
-        vc.delegate = self
-    }
-}
-
-
-
-
 
 
 // SearchBar methods

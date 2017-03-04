@@ -9,20 +9,26 @@
 import UIKit
 
 protocol SettingsPresentingViewControllerDelegate: class {
-    func didSaveSettings(settings: GithubRepoSearchSettings)
+    func didSaveSettings(settings: Int)
     func didCancelSettings()
 }
 
 class SearchSettingsViewController: UIViewController {
-    @IBOutlet weak var sliderLabel: UILabel!
-    @IBOutlet weak var slider: UISlider!
-    
-    var settings = GithubRepoSearchSettings()
-    weak var delegate: SettingsPresentingViewControllerDelegate!
+    weak var delegate: SettingsPresentingViewControllerDelegate?
+
+    @IBOutlet weak var minStarsSlider: UISlider!
+    @IBOutlet weak var minStarsLabel: UILabel!
+    var minStars: Int!
+    var copyMinStars: Int!
+
     override func viewDidLoad() {
+        navigationItem.titleView?.tintColor = .white
         super.viewDidLoad()
-        slider.value = Float(settings.minStars)
-        sliderLabel.text = "\(Int(settings.minStars))"
+        minStarsLabel.text = "\(minStars!)"
+        copyMinStars = minStars
+        
+        minStarsSlider.value = Float(minStars!)
+
         // Do any additional setup after loading the view.
     }
 
@@ -30,21 +36,22 @@ class SearchSettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
-        sliderLabel.text = "\(Int(slider.value))"
+    
+    @IBAction func onSliderChanged(_ sender: UISlider) {
+        copyMinStars = Int(sender.value)
+        minStarsLabel.text = "\(copyMinStars!)"
+        print(copyMinStars)
     }
     
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true) {
-        self.settings.minStars = Int(self.slider.value)
-        self.delegate?.didSaveSettings(settings: self.settings)
-        }
+    @IBAction func onCancelPressed(_ sender: Any) {
+        self.delegate?.didCancelSettings()
+        dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true) {
-         self.delegate?.didCancelSettings()
-        }
+    @IBAction func onSavePressed(_ sender: Any) {
+        self.minStars = copyMinStars
+        self.delegate?.didSaveSettings(settings: copyMinStars!)
+        dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

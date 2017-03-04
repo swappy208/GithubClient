@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  GithubDemo
 //
-//  Created by Swapnil Tamrakar on 2/14/17.
+//  Created by Nhan Nguyen on 5/12/15.
 //  Copyright (c) 2015 codepath. All rights reserved.
 //
 

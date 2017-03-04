@@ -2,7 +2,7 @@
 //  RepoCell.swift
 //  GithubDemo
 //
-//  Created by Swapnil Tamrakar on 2/14/17.
+//  Created by Swapnil Tamrakar on 2/17/17.
 //  Copyright © 2017 codepath. All rights reserved.
 //
 
@@ -23,7 +23,7 @@ class RepoCell: UITableViewCell {
     
         
         didSet {
-                        nameLabel.text = repo.name
+            nameLabel.text = repo.name
             let imageURL = repo.ownerAvatarURL
             picImage.setImageWith(imageURL as! URL)
             starLabel.text = String(repo.stars!)

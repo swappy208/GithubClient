@@ -14,7 +14,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
-            endingLineNumber = "94">
+            endingLineNumber = "94"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,16 +38,16 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "GithubDemo.SearchSettingsViewController.settings.setter : GithubDemo.GithubRepoSearchSettings"
+                  symbolName = "GithubDemo.SearchSettingsViewController.minStarsLabel.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
                   moduleName = "GithubDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/swapniltamrakar/Desktop/GithubClient/GithubDemo/SearchSettingsViewController.swift"
-                  timestampString = "510274045.5646"
+                  timestampString = "510294483.757512"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "183">
+                  offsetFromSymbolStart = "42">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -55,12 +57,12 @@
                   moduleName = "GithubDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/swapniltamrakar/Desktop/GithubClient/GithubDemo/SearchSettingsViewController.swift"
-                  timestampString = "510274045.571513"
+                  timestampString = "510294483.765295"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "225">
+                  offsetFromSymbolStart = "265">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -70,12 +72,12 @@
                   moduleName = "GithubDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/swapniltamrakar/Desktop/GithubClient/GithubDemo/SearchSettingsViewController.swift"
-                  timestampString = "510274045.577915"
+                  timestampString = "510294483.771482"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "136">
+                  offsetFromSymbolStart = "165">
                </Location>
             </Locations>
          </BreakpointContent>
